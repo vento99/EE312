@@ -6,6 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -25,10 +27,6 @@ UtPod::UtPod(int size){
 };
 
 int UtPod::addSong(Song const &s) {
-    //size < 1 ??
-    if(s.getArtist() == "" || s.getTitle() == ""){
-        return NOT_FOUND;
-    }
     if(s.getSize() > getRemainingMemory()){
         return NO_MEMORY;
     }
@@ -47,7 +45,7 @@ int UtPod::addSong(Song const &s) {
     }
     return SUCCESS;
 }
-int UtPod::removeSong(Song const &s){
+int UtPod::removeSong(Song const &s){ //free
     SongNode *current = songs;
     SongNode *previous = NULL;
     while(current){
@@ -66,8 +64,28 @@ int UtPod::removeSong(Song const &s){
 }
 
 void UtPod::shuffle(){
-
+    int numSongs = getNumSongs();
+    unsigned int currentTime =  (unsigned)time(0);
+    srand(currentTime);
+    for(int i = 0; i < numSongs*2; i++){
+        int index1 = rand() % numSongs;
+        int index2 = rand() % numSongs;
+        SongNode *song1 = songs;
+        SongNode *song2 = songs;
+        while(index1 != 0){
+            song1 = song1->next;
+            index1--;
+        }
+        while(index2 != 0){
+            song2 = song2->next;
+            index2--;
+        }
+        Song temp = song1->s;
+        song1->s = song2->s;
+        song2->s = temp;
+    }
 }
+
 void UtPod::showSongList(){
     SongNode *temp = songs;
     if(temp == NULL){
@@ -81,8 +99,25 @@ void UtPod::showSongList(){
     }
 }
 void UtPod::sortSongList(){
-    int numSongs = getNumSongs();
-
+    SongNode *currentIterator = songs;
+    SongNode *innerIterator = NULL;
+    SongNode *smallest = NULL;
+    while(currentIterator != NULL){
+        smallest = currentIterator;
+        innerIterator = currentIterator->next;
+        while(innerIterator != NULL){
+            if(innerIterator->s < smallest->s){
+                smallest = innerIterator;
+            }
+            innerIterator = innerIterator->next;
+        }
+        if(smallest != currentIterator) {
+            Song temp = smallest->s;
+            smallest->s = currentIterator->s;
+            currentIterator->s = temp;
+        }
+        currentIterator = currentIterator->next;
+    }
 }
 
 
