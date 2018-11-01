@@ -16,6 +16,7 @@ Anthony Vento
  */
 
 // This file is the header that defines methods relating to the song class
+// For documentation of methods, see the song.h file
 // Date: November 1, 2018
 
 #include "song.h"

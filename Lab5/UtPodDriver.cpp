@@ -96,6 +96,7 @@ int main(int argc, char *argv[]) {
     //test for clearing memory;
     cout << "*****Test9: Clearing the memory*****" << endl;
     t.clearMemory();
+    cout << "memory remaining = " << t.getRemainingMemory() << " MB" << endl;
     t.showSongList();
 
     //test for creating another UT Pod and attempt to remove a song that does not exit
@@ -124,7 +125,7 @@ int main(int argc, char *argv[]) {
 
     //test for get remaining memory
     cout << "*****Test12: Get remaining memory*****" << endl;
-    cout << "memory remaining = " << pod.getRemainingMemory() << endl << endl;
+    cout << "memory remaining = " << pod.getRemainingMemory() << " MB" << endl << endl;
 
     //test for removing first song
     cout << "*****Test13: Removing first song from UtPod*****" << endl;
@@ -141,9 +142,25 @@ int main(int argc, char *argv[]) {
     pod.addSong(song5);
     pod.showSongList();
 
+    //test for sorting again
+    cout << "*****Test16: Sorting songs with a duplicate*****" << endl;
+    pod.sortSongList();
+    pod.showSongList();
+
+
     //test for removing duplicate song (will remove first of the two instances)
-    cout << "*****Test15: Removing Duplicate Song*****" << endl;
+    cout << "*****Test17: Removing Duplicate Song*****" << endl;
     pod.removeSong(song5);
     pod.showSongList();
+
+    //test for calling default song constructor then updating
+    cout << "*****Test18: Default song constructor, use set attributes, add to UT Pod*****" << endl;
+    Song song8;
+    song8.setTitle("Amazing Grace");
+    song8.setArtist("Bob Smith");
+    song8.setSize(5);
+    pod.addSong(song8);
+    pod.showSongList();
+
 
 }

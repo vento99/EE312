@@ -16,6 +16,7 @@ Anthony Vento
  */
 
 // This file is the driver that implements methods relating for UtPod class
+// For documentation of methods, see the UtPod.h file
 // Date: November 1, 2018
 
 #include "UtPod.h"
@@ -40,7 +41,7 @@ UtPod::UtPod(int size){
         memSize = size;
     }
     songs = NULL;
-};
+}
 
 int UtPod::addSong(Song const &s) {
     if(s.getSize() > getRemainingMemory()){
@@ -60,7 +61,8 @@ int UtPod::addSong(Song const &s) {
     }
     return SUCCESS;
 }
-int UtPod::removeSong(Song const &s){ //free
+
+int UtPod::removeSong(Song const &s){
     SongNode *current = songs;
     SongNode *previous = NULL;
     while(current){
@@ -91,6 +93,7 @@ void UtPod::shuffle(){
         int index2 = rand() % numSongs;
         SongNode *song1 = songs;
         SongNode *song2 = songs;
+
         while(index1 != 0){
             song1 = song1->next;
             index1--;
@@ -99,6 +102,7 @@ void UtPod::shuffle(){
             song2 = song2->next;
             index2--;
         }
+
         Song temp = song1->s;
         song1->s = song2->s;
         song2->s = temp;
@@ -120,6 +124,7 @@ void UtPod::showSongList(){
     }
     cout << endl;
 }
+
 void UtPod::sortSongList(){                     //implemented a selection sort
     SongNode *currentIterator = songs;
     SongNode *innerIterator = NULL;
@@ -169,7 +174,7 @@ int UtPod::getNumSongs(){
         temp = temp->next;
     }
     return numSongs;
-};
+}
 
 int UtPod::getMemoryUsed(){
     int memory = 0;

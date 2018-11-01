@@ -53,7 +53,7 @@ class Song
         string getTitle() const;
 
         /* FUNCTION - void setTitle
-         *  returns the title of the song
+         *  sets the title of the song
 
            input parms - string for the title you want to set the song as
 
@@ -73,7 +73,7 @@ class Song
         string getArtist() const;
 
         /* FUNCTION - void setArtist
-         *  returns the title of the song
+         *  sets the artist of the song
 
            input parms - string for the artist you want to set the song as
 
@@ -94,7 +94,7 @@ class Song
         int getSize() const;
 
         /* FUNCTION - void setSize
-         *  returns the title of the song
+         *  sets the size of the song
 
            input parms - integer for the size you want to update the song with
 
@@ -103,14 +103,16 @@ class Song
 
         void setSize(int songSize);
 
-
-        //override the boolean operator for >
+        //overload the boolean operator for > when comparing two songs
+        //first checks artist, then title, then size
         bool operator >(Song const &rhs);
 
-        //override the boolean operator for ==
+        //overload the boolean operator for == when comparing two songs
+        //checks if artist and title and size are equal
         bool operator ==(Song const &rhs);
 
-        //override the boolean operator for <
+        //overload the boolean operator for < when comparing two songs
+        //first checks artist, then title, then size
         bool operator <(Song const &rhs);
 
 };

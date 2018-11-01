@@ -81,7 +81,7 @@ class UtPod
 
          input parms - pointer to a Song object s
 
-         output parms - 0 if the song was successfully added, or -1 if not enough memory to add the song;
+         output parms - Int: 0 if the song was successfully added, or -1 if not enough memory to add the song;
         */
 
         int addSong(Song const &s);
@@ -96,7 +96,7 @@ class UtPod
 
            input parms - pointer to a Song object s
 
-           output parms - return 0 if the song was successfully removed or return -2 if song was not removed
+           output parms - return int: 0 if the song was successfully removed or return -2 if song was not removed
         */
 
         int removeSong(Song const &s);
@@ -154,7 +154,7 @@ class UtPod
 
            input parms - none
 
-           output parms - returns the memSize of the UTPod
+           output parms - returns int: the memSize of the UTPod
         */
 
         int getTotalMemory() {
@@ -167,7 +167,7 @@ class UtPod
 
            input parms - none
 
-           output parms - returns integer for how much memory is avaiable for newSongs
+           output parms - returns int: how much memory is avaiable for newSongs
         */
 
         int getRemainingMemory();
