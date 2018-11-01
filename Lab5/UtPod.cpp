@@ -15,7 +15,7 @@ Anthony Vento
  *
  */
 
-// This file is the driver that implements methods relating for UtPod class
+// This file is the driver that implements methods relating to the UtPod class
 // For documentation of methods, see the UtPod.h file
 // Date: November 1, 2018
 

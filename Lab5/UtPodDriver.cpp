@@ -162,5 +162,52 @@ int main(int argc, char *argv[]) {
     pod.addSong(song8);
     pod.showSongList();
 
+    //test for ==, >, and < for song class
+    cout << "*****Test18: Using ==, >, and < for the song class*****" << endl;
+    Song song9("Beatles", "Equality", 5);
+    Song song10("Beatles", "Equality", 5);
+    if(song9 == song10){
+        value = "True";
+    }else{
+        value = "False";
+    }
+    cout << "Comparing 2 equal songs with ==" << endl;
+    cout << "Result = " << value << endl << endl;
+
+    if(song9 > song10){
+        value = "True";
+    }else{
+        value = "False";
+    }
+    cout << "Comparing 2 equal songs with >" << endl;
+    cout << "Result = " << value << endl << endl;
+
+    if(song9 < song10){
+        value = "True";
+    }else{
+        value = "False";
+    }
+    cout << "Comparing 2 equal songs with <" << endl;
+    cout << "Result = " << value << endl << endl;
+
+    Song song11("Beatles", "Equality", 6);
+
+    if(song10 < song11){
+        value = "True";
+    }else{
+        value = "False";
+    }
+    cout << "Comparing 2 songs with < where the songs have same title/artist but first song has smaller size" << endl;
+    cout << "Result = " << value << endl << endl;
+
+    Song song12("Beatles", "Yellow", 6);
+
+    if(song11 > song12){
+        value = "True";
+    }else{
+        value = "False";
+    }
+    cout << "Comparing 2 songs with > where the songs have same artist/size but first song comes first in alphabet" << endl;
+    cout << "Result = " << value << endl;
 
 }
