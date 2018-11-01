@@ -70,6 +70,7 @@ int UtPod::removeSong(Song const &s){ //free
             }else{
                 songs = current->next;
             }
+            delete(current);
             return SUCCESS;
         }
         previous = current;
@@ -105,32 +106,34 @@ void UtPod::shuffle(){
 }
 
 void UtPod::showSongList(){
+    cout << "Showing UT Pod Song List..." << endl;
     SongNode *temp = songs;
     if(temp == NULL){
         cout << "No Songs in the UTPod :(" << endl;
     }else {
         while (temp != NULL) {
-            cout << "Artist: " << temp->s.getArtist() << ", Song: "
-                 << temp->s.getTitle() << ", Size: " << temp->s.getSize() << endl;
+            cout << "- Artist: " << temp->s.getArtist() << ", Song: "
+                 << temp->s.getTitle() << ", Size: " << temp->s.getSize()
+                 << " MB" << endl;
             temp = temp->next;
         }
     }
     cout << endl;
 }
-void UtPod::sortSongList(){
+void UtPod::sortSongList(){                     //implemented a selection sort
     SongNode *currentIterator = songs;
     SongNode *innerIterator = NULL;
     SongNode *smallest = NULL;
     while(currentIterator != NULL){
         smallest = currentIterator;
         innerIterator = currentIterator->next;
-        while(innerIterator != NULL){
+        while(innerIterator != NULL){           //will find smallest song from the remaining ones
             if(innerIterator->s < smallest->s){
                 smallest = innerIterator;
             }
             innerIterator = innerIterator->next;
         }
-        if(smallest != currentIterator) {
+        if(smallest != currentIterator) {       //if the smallest is not the current, swap
             Song temp = smallest->s;
             smallest->s = currentIterator->s;
             currentIterator->s = temp;
