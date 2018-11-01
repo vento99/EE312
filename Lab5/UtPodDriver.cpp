@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
     pod.showSongList();
 
     //test for ==, >, and < for song class
-    cout << "*****Test18: Using ==, >, and < for the song class*****" << endl;
+    cout << "*****Test19: Using ==, >, and < for the song class*****" << endl;
     Song song9("Beatles", "Equality", 5);
     Song song10("Beatles", "Equality", 5);
     if(song9 == song10){
