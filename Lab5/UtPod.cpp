@@ -1,6 +1,22 @@
-//
-// Created by avento on 10/24/2018.
-//
+/* UtPod.cpp
+Anthony Vento
+
+ Student information for project:
+ *
+ * Replace <NAME> with your name.
+ *
+ * On my honor, Anthony Vento, this programming project is my own work
+ * and I have not provided this code to any other student.
+ *
+ * Name: Anthony Vento
+ * email address: anthony.vento@utexas.edu
+ * UTEID: amv2987
+ * Section 5 digit ID: 16235
+ *
+ */
+
+// This file is the driver that implements methods relating for UtPod class
+// Date: November 1, 2018
 
 #include "UtPod.h"
 #include <iostream>
@@ -30,7 +46,6 @@ int UtPod::addSong(Song const &s) {
     if(s.getSize() > getRemainingMemory()){
         return NO_MEMORY;
     }
-
     SongNode *newSong = new SongNode;
     newSong->s = s;
     newSong->next = NULL;
@@ -65,6 +80,9 @@ int UtPod::removeSong(Song const &s){ //free
 
 void UtPod::shuffle(){
     int numSongs = getNumSongs();
+    if (numSongs <= 1){
+        return;
+    }
     unsigned int currentTime =  (unsigned)time(0);
     srand(currentTime);
     for(int i = 0; i < numSongs*2; i++){
@@ -97,6 +115,7 @@ void UtPod::showSongList(){
             temp = temp->next;
         }
     }
+    cout << endl;
 }
 void UtPod::sortSongList(){
     SongNode *currentIterator = songs;
@@ -120,12 +139,11 @@ void UtPod::sortSongList(){
     }
 }
 
-
 int UtPod::getRemainingMemory(){
-    return memSize - getMemoryUsed();
+    return getTotalMemory() - getMemoryUsed();
 };
 
-UtPod::~UtPod(){
+void UtPod::clearMemory(){
     SongNode *current = songs;
     SongNode *next = NULL;
     while(current!= NULL){
@@ -133,6 +151,11 @@ UtPod::~UtPod(){
         delete(current);
         current = next;
     }
+    songs = NULL;
+}
+
+UtPod::~UtPod(){
+    clearMemory();
 }
 
 int UtPod::getNumSongs(){

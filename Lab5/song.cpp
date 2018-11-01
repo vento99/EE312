@@ -1,6 +1,22 @@
-//
-// Created by avento on 10/24/2018.
-//
+/* UtPod.h
+Anthony Vento
+
+ Student information for project:
+ *
+ * Replace <NAME> with your name.
+ *
+ * On my honor, Anthony Vento, this programming project is my own work
+ * and I have not provided this code to any other student.
+ *
+ * Name: Anthony Vento
+ * email address: anthony.vento@utexas.edu
+ * UTEID: amv2987
+ * Section 5 digit ID: 16235
+ *
+ */
+
+// This file is the header that defines methods relating to the song class
+// Date: November 1, 2018
 
 #include "song.h"
 
@@ -70,8 +86,4 @@ bool Song::operator <(Song const &rhs){
         return size < rhs.size;
     }
     return false;
-}
-
-Song::~Song() {
-
 }
