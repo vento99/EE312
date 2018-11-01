@@ -88,7 +88,7 @@ void UtPod::shuffle(){
     }
     unsigned int currentTime =  (unsigned)time(0);
     srand(currentTime);
-    for(int i = 0; i < numSongs*2; i++){
+    for(int i = 0; i < 5*numSongs; i++){
         int index1 = rand() % numSongs;
         int index2 = rand() % numSongs;
         SongNode *song1 = songs;
