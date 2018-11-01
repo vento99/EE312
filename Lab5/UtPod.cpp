@@ -110,7 +110,6 @@ void UtPod::shuffle(){
 }
 
 void UtPod::showSongList(){
-    cout << "Showing UT Pod Song List..." << endl;
     SongNode *temp = songs;
     if(temp == NULL){
         cout << "No Songs in the UTPod :(" << endl;

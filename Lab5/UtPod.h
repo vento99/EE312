@@ -150,7 +150,6 @@ class UtPod
 
         /* FUNCTION - int getTotalMemory
          *  returns the total amount of memory in the UtPod
-            o will do nothing if there are less than two songs in the current list
 
            input parms - none
 
