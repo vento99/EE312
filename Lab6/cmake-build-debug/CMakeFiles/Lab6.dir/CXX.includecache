@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/avento/CLionProjects/Lab6/card.h
+iostream
+-
+string
+-
+
+C:/Users/avento/CLionProjects/Lab6/deck.cpp
+deck.h
+C:/Users/avento/CLionProjects/Lab6/deck.h
+iostream
+-
+fstream
+-
+string
+-
+ctime
+-
+cstdlib
+-
+vector
+-
+
+C:/Users/avento/CLionProjects/Lab6/deck.h
+card.h
+C:/Users/avento/CLionProjects/Lab6/card.h
+
