@@ -7,7 +7,7 @@ include_directories(.)
 
 add_executable(Lab6
         card.h
-        card_demo.cpp
+        go_fish.cpp
         deck.h
         player.h
         card.cpp

@@ -1,13 +1,34 @@
+/* card.cpp
+
+ Student information for project:
+ *
+ * Replace <NAME> with your name.
+ *
+ * On my honor, Anthony Vento, this programming project is my own work
+ * and I have not provided this code to any other student.
+ *
+ * Name: Anthony Vento
+ * email address: anthony.vento@utexas.edu
+ * UTEID: amv2987
+ * Section 5 digit ID: 16235
+ *
+ */
+
+// This file is the cpp file that implements methods relating to the card class
+// For documentation of methods, see the card.h file
+// Date: November 9, 2018
+
 #include "card.h"
 #include <string>
-
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
 Card::Card(){
     myRank = 1;
     mySuit = spades;
-}         // default, ace of spades
+}
 
 Card::Card(int rank, Suit s){
     myRank = rank;
@@ -19,6 +40,7 @@ string Card::toString() const{
     string rank = rankString(myRank);
     return rank + suit;
 }
+
 bool Card::sameSuitAs(const Card& c) const{
     return (mySuit == c.mySuit);
 }
@@ -26,6 +48,7 @@ bool Card::sameSuitAs(const Card& c) const{
 int  Card::getRank() const{
     return myRank;
 }
+
 string Card::suitString(Suit s) const{
     string suit;
     switch(s){
@@ -60,9 +83,35 @@ string Card::rankString(int r) const{
         case 1:
             rank = "A";
             break;
+        case 2:
+            rank = "2";
+            break;
+        case 3:
+            rank = "3";
+            break;
+        case 4:
+            rank = "4";
+            break;
+        case 5:
+            rank = "5";
+            break;
+        case 6:
+            rank = "6";
+            break;
+        case 7:
+            rank = "7";
+            break;
+        case 8:
+            rank = "8";
+            break;
+        case 9:
+            rank = "9";
+            break;
         default:
-            rank = to_string(r);
+            rank = "10";
+            break;
     }
+
     return rank;
 }
 

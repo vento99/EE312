@@ -1,5 +1,20 @@
 //File Name: card.h
-//
+
+/*
+ Student information for project:
+ *
+ * Replace <NAME> with your name.
+ *
+ * On my honor, Anthony Vento, this programming project is my own work
+ * and I have not provided this code to any other student.
+ *
+ * Name: Anthony Vento
+ * email address: anthony.vento@utexas.edu
+ * UTEID: amv2987
+ * Section 5 digit ID: 16235
+ *
+ */
+
 //Written by Owen Astrachan and Roger Priebe
 // This class represents a playing card, i.e., "ace of spades"
 // a Card is constructed from a rank (int in range 1..13)
@@ -19,6 +34,7 @@
 // string suitString() -- returns "s", "h", "d" or "c"
 //
 // Note that the Ace is represented by 1 and the King by 13
+
 
 #ifndef _CARD_H
 #define _CARD_H

@@ -1,4 +1,19 @@
 // FILE:  player.h
+
+/* Student information for project:
+ *
+ * Replace <NAME> with your name.
+ *
+ * On my honor, Anthony Vento, this programming project is my own work
+ * and I have not provided this code to any other student.
+ *
+ * Name: Anthony Vento
+ * email address: anthony.vento@utexas.edu
+ * UTEID: amv2987
+ * Section 5 digit ID: 16235
+ *
+ */
+
 // written by Roger Priebe
 // 1/22/08 (revised 9/2/08)
 // This class represents a player in a card game that takes "tricks"
@@ -10,11 +25,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
-
 #include "card.h"
-using namespace std;
 
+using namespace std;
 
 class Player
 {
@@ -36,13 +49,12 @@ class Player
     // comment out if you decide to not use it
     //this function will check a players hand for a pair. 
     //If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
-
     bool checkHandForBook(Card &c1, Card &c2);
 
     //OPTIONAL
     // comment out if you decide to not use it    
     //Does the player have a card with the same rank as c in her hand?
-    bool rankInHand(Card c) const; 
+    //bool rankInHand(Card c) const;
     
     //uses some strategy to choose one card from the player's
     //hand so they can say "Do you have a 4?"
@@ -65,7 +77,7 @@ class Player
     //this function will check a players hand for a pair. 
     //If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
 
-    bool checkHandForPair(Card &c1, Card &c2);
+    //bool checkHandForPair(Card &c1, Card &c2);
 
     //OPTIONAL
     // comment out if you decide to not use it    
@@ -74,8 +86,8 @@ class Player
     
     bool sameRankInHand(Card c) const;
 
-    Card findRankInHand(Card c) const;
-    
+    //Card findRankInHand(Card c) const;
+
     
   private:
           

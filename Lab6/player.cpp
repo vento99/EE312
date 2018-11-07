@@ -1,3 +1,23 @@
+/* player.cpp
+
+ Student information for project:
+ *
+ * Replace <NAME> with your name.
+ *
+ * On my honor, Anthony Vento, this programming project is my own work
+ * and I have not provided this code to any other student.
+ *
+ * Name: Anthony Vento
+ * email address: anthony.vento@utexas.edu
+ * UTEID: amv2987
+ * Section 5 digit ID: 16235
+ *
+ */
+
+// This file is the cpp file that implements methods relating to the player class
+// For documentation of methods, see the player.h file
+// Date: November 9, 2018
+
 #include "player.h"
 #include <cstdlib>
 #include <vector>
@@ -40,16 +60,19 @@ bool Player::cardInHand(Card c) const{
 
 //Remove the card c from the hand and return it to the caller
 Card Player::removeCardFromHand(Card c){
+    //remove first card ????
     vector<Card>::const_iterator i;
+    int index = 0;
     for(i = myHand.begin(); i != myHand.end(); i++){
-        if(*i == c){
+        if((*i) == c){
             Card removedCard = *i;
-            myHand.erase(i);
+            myHand.erase(myHand.begin() + index);
             return removedCard;
         }
+        index++;
     }
-    //default return?
 }
+
 bool Player::checkHandForBook(Card &c1, Card &c2){
     vector<Card>::const_iterator i;
     vector<Card>::const_iterator j;
@@ -78,7 +101,7 @@ string Player::showHand() const{
 string Player::showBooks() const{
     string books = "";
     vector<Card>::const_iterator i;
-    int counter = 0;
+    int counter = 1;
     for(i = myBook.begin(); i != myBook.end(); i++){
         if(counter > 0 && counter%2 == 0){
             books += (*i).toString() + "\n";
@@ -86,7 +109,7 @@ string Player::showBooks() const{
             books += (*i).toString() + ", ";
 
         }
-        counter ++;
+        counter++;
     }
     return books;
 }
@@ -101,16 +124,16 @@ int Player::getBookSize() const{
 
 bool Player::sameRankInHand(Card c) const{
     vector<Card>::const_iterator i;
-    int rank = c.getRank();
     for(i = myHand.begin(); i != myHand.end(); i++){
-        if((*i).getRank() == rank){
+        if((*i).getRank() == c.getRank()){
             return true;
         }
     }
     return false;
 }
 
-Card Player::findRankInHand(Card c) const{
+
+/*Card Player::findRankInHand(Card c) const{
     vector<Card>::const_iterator i;
     int rank = c.getRank();
     for(i = myHand.begin(); i != myHand.end(); i++){
@@ -118,5 +141,5 @@ Card Player::findRankInHand(Card c) const{
             return (*i);
         }
     }
-}
+}*/
 
