@@ -49,20 +49,47 @@ class Card
 
 
     enum Suit {spades, hearts, diamonds, clubs};
-    
-    Card();          // default, ace of spades
 
+    //Default constructor
+    //Sets card to ace of spades
+    Card();
+
+    //Constructor with rank and suit
+    //User of class will pass in a rank and a suit.
     Card(int rank, Suit s);
 
-    string toString()              const;  // return string version e.g. Ac 4h Js
-    bool sameSuitAs(const Card& c) const;  // true if suit same as c
-    int  getRank()                 const;  // return rank, 1..13
-    string suitString(Suit s)      const;  // return "s", "h",...
+
+    //function: toString
+    //inputs: none
+    //outputs: string version e.g. Ac 4h Js
+    string toString() const;
+
+    //function: sameSuitAs
+    //inputs: constant reference to a card
+    //outputs: boolean true if Card c is same suit as given instance, else false
+    bool sameSuitAs(const Card& c) const;
+
+    //function: getRank
+    //inputs: none
+    //outputs: integer for the rank (1-13)
+    int  getRank() const;
+
+    //function: suitString
+    //inputs: suit
+    //outputs: string corresponding to "s", "h",...
+    string suitString(Suit s) const;
+
+    //function: rankString
+    //inputs: integer
+    //outputs: string corresponding to "A", "2", ..."Q"
+    string rankString(int r) const;
     
-    string rankString(int r)       const;  // return "A", "2", ..."Q"  
-    
-    
+    //overloads the == operator
+    //Checks if suit and rank are same for both cards
     bool operator == (const Card& rhs) const;
+
+    //overloads the != operator
+    //Checks if suit and rank are not the same
     bool operator != (const Card& rhs) const;
     
 
@@ -75,6 +102,7 @@ class Card
     
 };
 
+//overloads the ofstream output by outputing the tostring for the card
 ostream& operator << (ostream& out, const Card& c);
 
 

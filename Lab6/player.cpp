@@ -133,13 +133,3 @@ bool Player::sameRankInHand(Card c) const{
 }
 
 
-/*Card Player::findRankInHand(Card c) const{
-    vector<Card>::const_iterator i;
-    int rank = c.getRank();
-    for(i = myHand.begin(); i != myHand.end(); i++){
-        if((*i).getRank() == rank){
-            return (*i);
-        }
-    }
-}*/
-

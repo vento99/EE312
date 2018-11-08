@@ -49,8 +49,8 @@ void Deck::shuffle(){
     unsigned int currentTime =  (unsigned)time(0);
     srand(currentTime);
     for(int i = 0; i < 5*size(); i++){
-        int index1 = rand()%size();
-        int index2 = rand()%size();
+        int index1 = rand()%size() + myIndex + 1;
+        int index2 = rand()%size() + myIndex + 1;
         Card temp = myCards[index1];
         myCards[index1] = myCards[index2];
         myCards[index2] = temp;

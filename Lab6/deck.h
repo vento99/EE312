@@ -40,13 +40,26 @@ class Deck
 
 public:
 
+    //Default constructor
+    //Populates myCards array with a sorted deck of cards
+    Deck();
 
-    Deck();           // pristine, sorted deck
+    //Function: shuffle
+    //Inputs: None
+    //Outputs: None
+    //Shuffles the cards in the current deck
+    void shuffle();
 
-    void shuffle();   // shuffle the cards in the current deck
-    Card dealCard();   // get a card, after 52 are dealt, fail
+    //Function: dealCard
+    //Inputs: None
+    //Outputs: Card from the myCards array
+    //Precondition: There is at least one card left in deck
+    Card dealCard();
 
-    int  size() const; // # cards left in the deck
+    //Function: size
+    //Inputs: None
+    //Outputs: Integer that says the # of cards left in the deck
+    int  size() const;
 
 private:
 

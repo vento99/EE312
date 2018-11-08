@@ -45,13 +45,14 @@ int main( ) {
 
     Deck d;  //create a deck of cards
     d.shuffle();
+    int deckSize = d.size();
 
     dealHand(d, p1, numCards);
     dealHand(d, p2, numCards);
     ofstream myfile ("gofish_results.txt");
     if(!myfile.is_open()){
         cout << "File error";
-        return 1;
+        return 1; //return an error
     }
     myfile << p1.getName() << " and " << p2.getName() << " are going to play Go Fish!" << endl << endl;
 
@@ -81,7 +82,7 @@ int main( ) {
         }
     }
 
-    while(p1.getHandSize() != 0 || p2.getHandSize() != 0){
+    while(p1.getBookSize() + p2.getBookSize() != deckSize){
         if(playersTurn == 1){
             if(p1.getHandSize() < 1){
                 noCardsInHand(d, p1, myfile, &playersTurn);     //draw Card if no Cards in Hand
@@ -117,7 +118,7 @@ void dealHand(Deck &d, Player &p, int numCards) {
 }
 
 //Function: dealHand
-//Inputs: Constant reference to the deck, a player, and the file output stream, and pointer to the players Turn
+//Inputs: Reference to the deck, a player, and the file output stream, and pointer to the players Turn
 //Outputs: None
 //Player draws a card and check if there are bookings because of the draw, updates playersTurn
 void noCardsInHand(Deck &d, Player &p, ofstream &myfile, int *playersTurn){
@@ -134,7 +135,7 @@ void noCardsInHand(Deck &d, Player &p, ofstream &myfile, int *playersTurn){
 }
 
 //Function: dealHand
-//Inputs: Constant reference to the deck, a player, and the file output stream, and pointer to the players Turn
+//Inputs: Reference to the deck, a player, and the file output stream, and pointer to the players Turn
 //Outputs: None
 //Users asks for a random card from their hand and opponent answers by either giving the card
 //or says go fish making the user draw card.
@@ -151,17 +152,20 @@ void takeTurn(Deck &d, Player &user, Player &opponent, ofstream &myfile, int *pl
             }
             delete(c);
         }
-        //Card matching = opponent.removeCardFromHand(card1);
         opponent.removeCardFromHand(matching);
         user.addCard(matching);
         myfile << user.getName() << " books the " << card1 << " and the " << matching << endl;
         user.bookCards(card1, matching);
     } else {
         myfile << opponent.getName() << " says - Go Fish" << endl;
-        Card draw = d.dealCard();
-        user.addCard(draw);
-        myfile << user.getName() << " draws " << draw << endl;
-        checkForBookings(d, user, myfile);
+        if(d.size() > 0) {
+            Card draw = d.dealCard();
+            user.addCard(draw);
+            myfile << user.getName() << " draws " << draw << endl;
+            checkForBookings(d, user, myfile);
+        }else{
+            cout << "No cards left in deck." << endl;
+        }
         if(*playersTurn == 1){
             *playersTurn = 2;
         }else{
@@ -171,7 +175,7 @@ void takeTurn(Deck &d, Player &user, Player &opponent, ofstream &myfile, int *pl
 }
 
 //Function: checkForBookings
-//Inputs: Constant reference to the deck, a player, and the file output stream
+//Inputs: Reference to the deck, a player, and the file output stream
 //Outputs: None
 //Checks hand for bookings and books card if necessary
 void checkForBookings(Deck &d, Player &p, ofstream &myfile){
@@ -183,7 +187,7 @@ void checkForBookings(Deck &d, Player &p, ofstream &myfile){
 }
 
 //Function: checkForBookings
-//Inputs: Constant reference to the 2 players, and the file output stream
+//Inputs: Reference to the 2 players, and the file output stream
 //Outputs: None
 //Writes the bookings to the file and determines the winner and writes it to the file
 void findWinner(Player &p1, Player &p2, ofstream &myfile){
