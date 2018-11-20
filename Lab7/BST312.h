@@ -398,7 +398,7 @@ vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 template<class ItemType>
 bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 {
-    TreeNode current = root;
+    TreeNode* current = root;
     while(current != NULL){
         if(current->data == item){
             return true;
