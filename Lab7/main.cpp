@@ -49,6 +49,10 @@ int main() {
     cout << "Remove items " << endl;
     cout << "number of nodes in tree before delete is " << bst.countNodes() << endl;
     s = "tree";
+
+    //cout << "This is a test for isItemInTree" << bst.isItemInTree(s) << endl;
+    cout << "This is a test for isItemInTree " << bst.isItemInTree("blah") << endl;
+
     bst.deleteItem(s);
     print(bst.postOrderTraversal());
     cout << endl;
