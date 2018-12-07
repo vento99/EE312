@@ -11,9 +11,15 @@ hashTable::hashTable() {
 int hashTable::hashingFunction(string value) {
     unsigned int result = 0;
     int length = value.length();
-    //may need to change
-    for(int i = length-1; i >= 0; i--){  //used from Priebe and class
-        result += (unsigned int)value[length - i - 1] * (unsigned int)pow(37, i);
+    //if(length > 10){
+     //   length = 10;
+    //}
+    for(int i = 0; i < length; i++){  //used from Priebe and class
+        unsigned int ascii = (unsigned int)value[length - i - 1];
+        if(ascii >= 65 && ascii <= 90){
+            ascii = ascii+32;
+        }
+        result += ascii * (unsigned int)pow(17, i);
     }
     result = (result+SIZE) % SIZE;
     return result;
@@ -31,7 +37,8 @@ void hashTable::put(string word, int fileIndex){
     }else {
         while(current) {
             if (current->fileIndex == fileIndex) {
-                return;
+               delete newNode;
+               return;
             }
             previous = current;
             current = current->next;

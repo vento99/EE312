@@ -12,7 +12,8 @@
 
 using namespace std;
 int getdir (string dir, vector<string> &files);
-
+void initializeOutput(vector<vector<int> > &output, int cutoff, int numFiles, int *fileCollisions[]);
+void sortOutput(vector<vector<int> > &output);
 
 int main(int argc, char* argv[]){
     if(argc != 4){
@@ -22,11 +23,14 @@ int main(int argc, char* argv[]){
     string path = string(argv[1]);
     int n = atoi(argv[2]);
     int cutoff = atoi(argv[3]);
+
     vector<string> files = vector<string>();
     getdir(path, files);
+
     int numFiles = files.size() - 2;
     int *fileCollisions[numFiles];
     hashTable table;
+
     for (unsigned int i = 2; i < files.size(); i++) {
         string filePath = path + "/" + files[i];
         ifstream currentFile(filePath.c_str());
@@ -40,7 +44,7 @@ int main(int argc, char* argv[]){
             if(nWords.size() == n){
                 string outputWord = currentSet.substr(0, currentSet.length() - 1);
                 table.put(outputWord, i-2);
-                //cout << outputWord << endl;
+                //cout << outputWord;
                 removeWord = nWords.front();
                 nWords.pop();
                 currentSet.erase(currentSet.begin(), currentSet.begin() + removeWord.length() + 1);
@@ -48,6 +52,7 @@ int main(int argc, char* argv[]){
         }
         currentFile.close();
     }
+
     for(int i = 0; i < numFiles; i++){
         fileCollisions[i] = new int[numFiles];
     }
@@ -57,18 +62,21 @@ int main(int argc, char* argv[]){
             fileCollisions[i][j] = 0;
         }
     }
-
     table.determineCollisions(fileCollisions);
-    int numOverlaps = 0;
-    for(int i = 0; i < numFiles; i++){
-        for(int j = i+1; j < numFiles; j++){
-            if(fileCollisions[i][j] >= cutoff){
-                numOverlaps++;
-                cout << fileCollisions[i][j] << " collisions between " << files[i+2] << "and " << files[j+2] << endl;
-            }
-        }
+
+    vector<vector<int> > output;
+    initializeOutput(output, cutoff, numFiles, fileCollisions);
+    if(output.empty()){
+        cout << "No plagiarism detected for the given inputs!" << endl;
+        return 0;
     }
-    cout << numOverlaps << endl;
+    sortOutput(output);
+
+    for(int i = 0; i < output.size(); i++){
+        cout << output[i][0] << " collisions between " << files[output[i][1]] << " and " << files[output[i][2]] << endl;
+    }
+    cout << endl << "There were " << output.size() << " total instances of plagiarism for the specified inputs." << endl;
+
     for(int i = 0; i < numFiles; i++){
         delete[] fileCollisions[i];
     }
@@ -89,4 +97,30 @@ int getdir (string dir, vector<string> &files) {
     }
     closedir(dp);
     return 0;
+}
+
+void initializeOutput(vector<vector<int> > &output, int cutoff, int numFiles, int *fileCollisions[]){
+    for(int i = 0; i < numFiles; i++){
+        for(int j = i+1; j < numFiles; j++){
+            if(fileCollisions[i][j] >= cutoff){
+                vector <int> currCollision;
+                currCollision.push_back(fileCollisions[i][j]);
+                currCollision.push_back(i+2);
+                currCollision.push_back(j+2);
+                output.push_back(currCollision);
+            }
+        }
+    }
+}
+
+void sortOutput(vector<vector<int> > &output){
+    for(int i = 0; i < output.size()-1; i++){
+        for(int j = 0; j < output.size()-1; j++){
+            if(output[j][0] < output[j+1][0]){
+                vector<int> temp = output[j];
+                output[j] = output[j+1];
+                output[j+1] = temp;
+            }
+        }
+    }
 }
